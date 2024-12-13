@@ -13,16 +13,18 @@
 / {
 	aliases {
 		serial0 = &blsp1_uart5;
+
 		led-boot = &led_front_blue;
 		led-failsafe = &led_front_red;
 		led-running = &led_front_green;
 		led-upgrade = &led_front_white;
+
 		label-mac-device = &dp2;
 	};
 
 	chosen {
 		stdout-path = "serial0:115200n8";
-		bootargs-append = "ubi.mtd=rootfs root=/dev/ubiblock0_0";
+		bootargs-append = " ubi.mtd=rootfs root=/dev/ubiblock0_0";
 	};
 
 	keys {
@@ -43,8 +45,6 @@
 
 	leds {
 		compatible = "gpio-leds";
-		pinctrl-0 = <&leds_pins>;
-		pinctrl-names = "default";
 
 		led_front_blue: front-blue {
 			function = LED_FUNCTION_STATUS;
@@ -100,15 +100,6 @@
 			function = "mdio";
 			drive-strength = <8>;
 			bias-pull-up;
-		};
-	};
-
-	leds_pins: leds-pins {
-		mux {
-			pins = "gpio21", "gpio22", "gpio26", "gpio29", "gpio31", "gpio33";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
 		};
 	};
 };
@@ -366,11 +357,10 @@
 	reset-gpios = <&tlmm 37 GPIO_ACTIVE_LOW>;
 
 	ethernet-phy-package@0 {
+		compatible = "qcom,qca8075-package";
 		#address-cells = <1>;
 		#size-cells = <0>;
 		reg = <0>;
-
-		compatible = "qcom,qca8075-package";
 
 		qca8075_1: ethernet-phy@1 {
 			compatible = "ethernet-phy-ieee802.3-c22";
@@ -414,18 +404,22 @@
 			port_id = <2>;
 			phy_address = <1>;
 		};
+
 		port@3 {
 			port_id = <3>;
 			phy_address = <2>;
 		};
+
 		port@4 {
 			port_id = <4>;
 			phy_address = <3>;
 		};
+
 		port@5 {
 			port_id = <5>;
 			phy_address = <4>;
 		};
+
 		port@6 {
 			port_id = <6>;
 			phy_address = <28>;
@@ -476,7 +470,7 @@
 
 &wifi {
 	status = "okay";
-
+	qcom,ath11k-fw-memory-mode = <1>;
 	qcom,ath11k-calibration-variant = "Netgear-SXK80";
 };
 

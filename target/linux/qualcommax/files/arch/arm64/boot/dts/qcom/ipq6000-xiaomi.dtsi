@@ -13,13 +13,12 @@
 / {
 	aliases {
 		serial0 = &blsp1_uart3;
+
 		led-boot = &led_yellow;
 		led-failsafe = &led_blue;
 		led-running = &led_blue;
 		led-upgrade = &led_yellow;
 
-		/* Aliases as required by u-boot to patch MAC addresses */
-		//ethernet0 = &dp1;
 		ethernet1 = &dp2;
 		ethernet2 = &dp3;
 		ethernet3 = &dp4;
@@ -33,8 +32,6 @@
 
 	leds {
 		compatible = "gpio-leds";
-		pinctrl-0 = <&leds_pins>;
-		pinctrl-names = "default";
 
 		led_blue: system-blue {
 			label = "blue:system";
@@ -79,15 +76,6 @@
 			function = "gpio";
 			drive-strength = <8>;
 			bias-pull-up;
-		};
-	};
-
-	leds_pins: leds-pins {
-		mux {
-			pins = "gpio29", "gpio30", "gpio31", "gpio32";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-down;
 		};
 	};
 
@@ -137,24 +125,31 @@
 	pinctrl-names = "default";
 	reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
 
-	qca8075_1: ethernet-phy@1 {
-		compatible = "ethernet-phy-ieee802.3-c22";
-		reg = <1>;
-	};
+	ethernet-phy-package@0 {
+		compatible = "qcom,qca8075-package";
+		#address-cells = <1>;
+		#size-cells = <0>;
+		reg = <0>;
 
-	qca8075_2: ethernet-phy@2 {
-		compatible = "ethernet-phy-ieee802.3-c22";
-		reg = <2>;
-	};
+		qca8075_1: ethernet-phy@1 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <1>;
+		};
 
-	qca8075_3: ethernet-phy@3 {
-		compatible = "ethernet-phy-ieee802.3-c22";
-		reg = <3>;
-	};
+		qca8075_2: ethernet-phy@2 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <2>;
+		};
 
-	qca8075_4: ethernet-phy@4 {
-		compatible = "ethernet-phy-ieee802.3-c22";
-		reg = <4>;
+		qca8075_3: ethernet-phy@3 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <3>;
+		};
+
+		qca8075_4: ethernet-phy@4 {
+			compatible = "ethernet-phy-ieee802.3-c22";
+			reg = <4>;
+		};
 	};
 };
 
@@ -170,14 +165,17 @@
 			port_id = <2>;
 			phy_address = <1>;
 		};
+
 		port@3 {
 			port_id = <3>;
 			phy_address = <2>;
 		};
+
 		port@4 {
 			port_id = <4>;
 			phy_address = <3>;
 		};
+
 		port@5 {
 			port_id = <5>;
 			phy_address = <4>;
@@ -206,7 +204,6 @@
 &dp5 {
 	status = "okay";
 	phy-handle = <&qca8075_4>;
-	phy-mode = "psgmii";
 	label = "wan";
 };
 

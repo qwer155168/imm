@@ -18,16 +18,18 @@
 
 	aliases {
 		serial0 = &blsp1_uart5;
-		/* Aliases are required by U-Boot to patch MAC addresses */
-		ethernet0 = &dp6_syn;
-		ethernet1 = &dp4;
-		ethernet2 = &dp3;
-		ethernet3 = &dp2;
-		label-mac-device = &dp6_syn;
+
 		led-boot = &led_system_blue;
 		led-failsafe = &led_system_red;
 		led-running = &led_system_green;
 		led-upgrade = &led_system_blue;
+
+		ethernet0 = &dp6_syn;
+		ethernet1 = &dp4;
+		ethernet2 = &dp3;
+		ethernet3 = &dp2;
+
+		label-mac-device = &dp6_syn;
 	};
 
 	chosen {
@@ -116,10 +118,12 @@
 	reset-gpios = <&tlmm 22 GPIO_ACTIVE_LOW>;
 
 	ethernet-phy-package@0 {
+		compatible = "qcom,qca8075-package";
 		#address-cells = <1>;
 		#size-cells = <0>;
-		compatible = "qcom,qca8075-package";
 		reg = <0>;
+
+		qcom,package-mode = "qsgmii";
 
 		qca8075_0: ethernet-phy@0 {
 			compatible = "ethernet-phy-ieee802.3-c22";
@@ -160,7 +164,7 @@
 
 	switch_lan_bmp = <(ESS_PORT1 | ESS_PORT2 | ESS_PORT3 | ESS_PORT4)>;
 	switch_wan_bmp = <ESS_PORT6>;
-	switch_mac_mode = <MAC_MODE_PSGMII>;
+	switch_mac_mode = <MAC_MODE_QSGMII>;
 	switch_mac_mode1 = <MAC_MODE_10GBASE_R>;
 	switch_mac_mode2 = <MAC_MODE_USXGMII>;
 
@@ -169,18 +173,22 @@
 			port_id = <1>;
 			phy_address = <0>;
 		};
+
 		port@2 {
 			port_id = <2>;
 			phy_address = <1>;
 		};
+
 		port@3 {
 			port_id = <3>;
 			phy_address = <2>;
 		};
+
 		port@4 {
 			port_id = <4>;
 			phy_address = <3>;
 		};
+
 		port@6 {
 			port_id = <6>;
 			phy_address = <8>;
@@ -226,7 +234,7 @@
 &pcie0 {
 	status = "okay";
 
-	perst-gpio = <&tlmm 58 GPIO_ACTIVE_LOW>;
+	perst-gpios = <&tlmm 58 GPIO_ACTIVE_LOW>;
 
 	bridge@0,0 {
 		reg = <0x00020000 0 0 0 0>;
@@ -239,7 +247,7 @@
 &pcie1 {
 	status = "okay";
 
-	perst-gpio = <&tlmm 61 GPIO_ACTIVE_LOW>;
+	perst-gpios = <&tlmm 61 GPIO_ACTIVE_LOW>;
 
 	bridge@1,0 {
 		reg = <0x00010000 0 0 0 0>;
@@ -254,6 +262,7 @@
 			compatible = "pci17cb,1104";
 			reg = <0x00010000 0 0 0 0>;
 
+			qcom,ath11k-fw-memory-mode = <1>;
 			qcom,ath11k-calibration-variant = "prpl-Haze";
 		};
 	};
@@ -261,7 +270,7 @@
 
 &wifi {
 	status = "okay";
-
+	qcom,ath11k-fw-memory-mode = <1>;
 	qcom,ath11k-calibration-variant = "prpl-Haze";
 };
 

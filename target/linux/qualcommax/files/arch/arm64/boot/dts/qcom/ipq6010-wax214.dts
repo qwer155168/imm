@@ -17,12 +17,15 @@
 
 	aliases {
 		serial0 = &blsp1_uart3;
-		ethernet0 = &dp3;
-		label-mac-device = &dp3;
+
 		led-boot = &pwr;
 		led-failsafe = &pwr;
 		led-running = &pwr;
 		led-upgrade = &pwr;
+
+		ethernet0 = &dp3;
+
+		label-mac-device = &dp3;
 	};
 
 	chosen {
@@ -106,19 +109,16 @@
 
 &mdio {
 	status = "okay";
+
 	pinctrl-0 = <&mdio_pins>;
 	pinctrl-names = "default";
 	reset-gpios = <&tlmm 75 GPIO_ACTIVE_LOW>;
-	reset-delay-us = <10000>;
-	reset-post-delay-us = <50000>;
 
 	ethernet-phy-package@0 {
+		compatible = "qcom,qca8075-package";
 		#address-cells = <1>;
 		#size-cells = <0>;
-		compatible = "qcom,qca8075-package";
 		reg = <0>;
-
-		qcom,package-mode = "psgmii";
 
 		qca8072_4: ethernet-phy@4 {
 			compatible = "ethernet-phy-ieee802.3-c22";
