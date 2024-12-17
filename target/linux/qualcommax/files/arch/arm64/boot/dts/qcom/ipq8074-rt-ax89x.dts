@@ -43,8 +43,6 @@
 
 	keys {
 		compatible = "gpio-keys";
-		pinctrl-0 = <&button_pins>;
-		pinctrl-names = "default";
 
 		wifi-button {
 			label = "wifi";
@@ -163,16 +161,6 @@
 		enable-active-high;
 		regulator-boot-on;
 	};
-
-	output-usb0-power {
-		compatible = "regulator-output";
-		vout-supply = <&usb0_vbus>;
-	};
-
-	output-usb1-power {
-		compatible = "regulator-output";
-		vout-supply = <&usb1_vbus>;
-	};
 };
 
 &cpu0_thermal {
@@ -261,15 +249,6 @@
 };
 
 &tlmm {
-	button_pins: button-state {
-		mux {
-			pins = "gpio25", "gpio26", "gpio34", "gpio61";
-			function = "gpio";
-			drive-strength = <8>;
-			bias-pull-up;
-		};
-	};
-
 	i2c_pins: i2c-pins {
 		mux {
 			pins = "gpio42", "gpio43";
@@ -342,6 +321,16 @@
 		bias-disable;
 		output-high;
 	};
+};
+
+&qusb_phy_0 {
+	status = "okay";
+	vdda-phy-supply = <&usb0_vbus>;
+};
+
+&qusb_phy_1 {
+	status = "okay";
+	vdda-phy-supply = <&usb1_vbus>;
 };
 
 &qpic_nand {
@@ -418,10 +407,6 @@
 			};
 		};
 	};
-};
-
-&blsp1_i2c2 {
-	status = "okay";
 };
 
 &mdio {
