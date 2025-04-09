@@ -110,7 +110,20 @@ platform_do_upgrade() {
 		fw_setenv bootcount 0
 		nand_do_upgrade "$1"
 		;;
-	linksys,mr7350)
+	cmiot,ax18|\
+	redmi,ax5|\
+	xiaomi,ax1800|\
+	zn,m2|\
+	glinet,gl-ax1800|\
+	glinet,gl-axt1800|\
+	netgear,wax214|\
+	netgear,wax610|\
+	netgear,wax610y|\
+	qihoo,360v6)
+		nand_do_upgrade "$1"
+		;;
+	linksys,mr7350|\
+	linksys,mr7500)
 		boot_part="$(fw_printenv -n boot_part)"
 		if [ "$boot_part" -eq "1" ]; then
 			fw_setenv boot_part 2
@@ -122,16 +135,6 @@ platform_do_upgrade() {
 		fi
 		fw_setenv boot_part_ready 3
 		fw_setenv auto_recovery yes
-		nand_do_upgrade "$1"
-		;;
-	cmiot,ax18|\
-	glinet,gl-ax1800|\
-	glinet,gl-axt1800|\
-	redmi,ax5|\
-	xiaomi,ax1800|\
-	zn,m2|\
-	netgear,wax214|\
-	qihoo,360v6)
 		nand_do_upgrade "$1"
 		;;
 	tplink,eap610-outdoor)

@@ -50,6 +50,7 @@ ath79_setup_interfaces()
 	extreme-networks,ws-ap3805i|\
 	fortinet,fap-220-b|\
 	fortinet,fap-221-b|\
+	fortinet,fap-221-c|\
 	glinet,gl-ar300m-lite|\
 	glinet,gl-usb150|\
 	hak5,wifi-pineapple-nano|\
@@ -97,9 +98,6 @@ ath79_setup_interfaces()
 	tplink,eap225-v4|\
 	tplink,eap245-v1|\
 	tplink,re350k-v1|\
-	tplink,re355-v1|\
-	tplink,re450-v1|\
-	tplink,re450-v2|\
 	tplink,re450-v3|\
 	tplink,re455-v1|\
 	tplink,tl-wa1201-v2|\
@@ -195,6 +193,7 @@ ath79_setup_interfaces()
 	nec,wg1400hp|\
 	nec,wg1800hp|\
 	nec,wg1800hp2|\
+	nec,wg2200hp|\
 	tplink,archer-c5-v1|\
 	tplink,archer-c7-v1|\
 	tplink,archer-c7-v2|\
@@ -341,7 +340,8 @@ ath79_setup_interfaces()
 	sitecom,wlr-7100|\
 	tplink,archer-c2-v3|\
 	tplink,tl-wr1043nd-v4|\
-	tplink,tl-wr1043n-v5)
+	tplink,tl-wr1043n-v5|\
+	zte,e8820)
 		ucidef_add_switch "switch0" \
 			"0@eth0" "1:lan:4" "2:lan:3" "3:lan:2" "4:lan:1" "5:wan"
 		;;
@@ -417,6 +417,10 @@ ath79_setup_interfaces()
 	librerouter,librerouter-v1)
 		ucidef_add_switch "switch0" \
 			"0@eth0" "5:wan" "6@eth1" "4:lan"
+		;;
+	longdata,aps256)
+		ucidef_add_switch "switch0" \
+			"0@eth0" "1:lan:2" "2:lan:1" "5:wan"
 		;;
 	meraki,mr12)
 		ucidef_set_interface_lan "eth0"
@@ -870,6 +874,11 @@ ath79_setup_macs()
 	xiaomi,aiot-ac2350)
 		lan_mac=$(mtd_get_mac_binary art 0x1002)
 		;;
+	zte,e8820)
+		wan_mac=$(mtd_get_mac_binary art 0)
+		lan_mac=$(macaddr_add "$wan_mac" 1)
+		label_mac=$wan_mac
+                ;;
 	esac
 
 	[ -n "$lan_mac" ] && ucidef_set_interface_macaddr "lan" $lan_mac

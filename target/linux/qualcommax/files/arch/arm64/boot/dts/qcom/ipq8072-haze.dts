@@ -3,10 +3,10 @@
 /dts-v1/;
 
 #include "ipq8074.dtsi"
-#include "ipq8074-hk-cpu.dtsi"
-#include "ipq8074-common.dtsi"
 #include "ipq8074-ess.dtsi"
 #include "ipq8074-nss.dtsi"
+#include "ipq8074-common.dtsi"
+#include "ipq8074-hk-cpu.dtsi"
 
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
@@ -188,6 +188,10 @@
 	};
 };
 
+&edma {
+	status = "okay";
+};
+
 /* Dummy LAN port */
 &dp1 {
 	status = "disabled";
@@ -239,7 +243,7 @@
 
 	perst-gpios = <&tlmm 61 GPIO_ACTIVE_LOW>;
 
-	bridge@1,0 {
+	bridge@0,0 {
 		reg = <0x00010000 0 0 0 0>;
 		#address-cells = <3>;
 		#size-cells = <2>;
@@ -300,8 +304,4 @@
 			reg = <2>;
 		};
 	};
-};
-
-&edma {
-	status = "okay";
 };

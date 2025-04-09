@@ -28,13 +28,20 @@ case "$board" in
 		[ "$PHYNBR" = "0" ] && macaddr_add $label_mac 1 > /sys${DEVPATH}/macaddress
 		[ "$PHYNBR" = "1" ] && macaddr_add $label_mac 2 > /sys${DEVPATH}/macaddress
 		;;
-	linksys,mr7350)
+	linksys,mr7350|\
+	linksys,mr7500)
 		label_mac=$(mtd_get_mac_ascii devinfo hw_mac_addr)
 		[ "$PHYNBR" = "0" ] && macaddr_add $label_mac 2 > /sys${DEVPATH}/macaddress
 		[ "$PHYNBR" = "1" ] && macaddr_add $label_mac 3 > /sys${DEVPATH}/macaddress
 		;;
 	qihoo,360v6)
 		label_mac=$(mtd_get_mac_ascii factory lanMac)
+		[ "$PHYNBR" = "0" ] && macaddr_add $label_mac 2 > /sys${DEVPATH}/macaddress
+		[ "$PHYNBR" = "1" ] && macaddr_add $label_mac 3 > /sys${DEVPATH}/macaddress
+		;;
+	netgear,wax610|\
+	netgear,wax610y)
+		label_mac=$(get_mac_label)
 		[ "$PHYNBR" = "0" ] && macaddr_add $label_mac 2 > /sys${DEVPATH}/macaddress
 		[ "$PHYNBR" = "1" ] && macaddr_add $label_mac 3 > /sys${DEVPATH}/macaddress
 		;;

@@ -1,6 +1,6 @@
 --- /dev/null
 +++ b/configs/mt7986_mercusys_mr90x-v1_defconfig
-@@ -0,0 +1,106 @@
+@@ -0,0 +1,107 @@
 +CONFIG_ARM=y
 +CONFIG_SYS_HAS_NONCACHED_MEMORY=y
 +CONFIG_POSITION_INDEPENDENT=y
@@ -100,6 +100,7 @@
 +CONFIG_DM_REGULATOR_GPIO=y
 +CONFIG_RAM=y
 +CONFIG_DM_SERIAL=y
++CONFIG_SERIAL_RX_BUFFER=y
 +CONFIG_MTK_SERIAL=y
 +CONFIG_SPI=y
 +CONFIG_DM_SPI=y
@@ -295,10 +296,10 @@
 +bootcmd=run check_buttons ; run boot_production ; run boot_recovery
 +bootconf=config-1
 +bootdelay=0
-+bootfile=openwrt-mediatek-filogic-mercusys_mr90x-v1-ubi-initramfs-recovery.itb
-+bootfile_bl2=openwrt-mediatek-filogic-mercusys_mr90x-v1-ubi-preloader.bin
-+bootfile_fip=openwrt-mediatek-filogic-mercusys_mr90x-v1-ubi-bl31-uboot.fip
-+bootfile_upg=openwrt-mediatek-filogic-mercusys_mr90x-v1-ubi-squashfs-sysupgrade.itb
++bootfile=immortalwrt-mediatek-filogic-mercusys_mr90x-v1-ubi-initramfs-recovery.itb
++bootfile_bl2=immortalwrt-mediatek-filogic-mercusys_mr90x-v1-ubi-preloader.bin
++bootfile_fip=immortalwrt-mediatek-filogic-mercusys_mr90x-v1-ubi-bl31-uboot.fip
++bootfile_upg=immortalwrt-mediatek-filogic-mercusys_mr90x-v1-ubi-squashfs-sysupgrade.itb
 +bootmenu_confirm_return=askenv - Press ENTER to return to menu ; bootmenu 60
 +bootmenu_default=0
 +bootmenu_delay=0

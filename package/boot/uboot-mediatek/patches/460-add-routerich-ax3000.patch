@@ -1,6 +1,6 @@
 --- /dev/null
 +++ b/configs/mt7981_routerich_ax3000_defconfig
-@@ -0,0 +1,105 @@
+@@ -0,0 +1,106 @@
 +CONFIG_ARM=y
 +CONFIG_SYS_HAS_NONCACHED_MEMORY=y
 +CONFIG_POSITION_INDEPENDENT=y
@@ -100,6 +100,7 @@
 +CONFIG_DM_REGULATOR_GPIO=y
 +CONFIG_RAM=y
 +CONFIG_DM_SERIAL=y
++CONFIG_SERIAL_RX_BUFFER=y
 +CONFIG_MTK_SERIAL=y
 +CONFIG_SPI=y
 +CONFIG_DM_SPI=y
@@ -306,10 +307,10 @@
 +bootcmd=run check_buttons ; if pstore check ; then run boot_recovery ; else run boot_ubi ; fi
 +bootconf=config-1
 +bootdelay=0
-+bootfile=openwrt-mediatek-filogic-routerich_ax3000-ubootmod-initramfs-recovery.itb
-+bootfile_bl2=openwrt-mediatek-filogic-routerich_ax3000-ubootmod-preloader.bin
-+bootfile_fip=openwrt-mediatek-filogic-routerich_ax3000-ubootmod-bl31-uboot.fip
-+bootfile_upg=openwrt-mediatek-filogic-routerich_ax3000-ubootmod-squashfs-sysupgrade.itb
++bootfile=immortalwrt-mediatek-filogic-routerich_ax3000-ubootmod-initramfs-recovery.itb
++bootfile_bl2=immortalwrt-mediatek-filogic-routerich_ax3000-ubootmod-preloader.bin
++bootfile_fip=immortalwrt-mediatek-filogic-routerich_ax3000-ubootmod-bl31-uboot.fip
++bootfile_upg=immortalwrt-mediatek-filogic-routerich_ax3000-ubootmod-squashfs-sysupgrade.itb
 +bootled_pwr=blue:power
 +bootled_rec=blue:power
 +bootmenu_confirm_return=askenv - Press ENTER to return to menu ; bootmenu 60

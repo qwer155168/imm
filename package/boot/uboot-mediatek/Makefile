@@ -279,6 +279,42 @@ define U-Boot/mt7981_cmcc_rax3000m-nand
   DEPENDS:=+trusted-firmware-a-mt7981-spim-nand-ddr4
 endef
 
+define U-Boot/mt7981_cmcc_rax3000me-emmc
+  NAME:=CMCC RAX3000Me
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=cmcc_rax3000me
+  UBOOT_CONFIG:=mt7981_cmcc_rax3000me-emmc
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=emmc
+  BL2_SOC:=mt7981
+  BL2_DDRTYPE:=ddr3
+  DEPENDS:=+trusted-firmware-a-mt7981-emmc-ddr3
+endef
+
+define U-Boot/mt7981_cmcc_rax3000me-nand-ddr3
+  NAME:=CMCC RAX3000Me
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=cmcc_rax3000me
+  UBOOT_CONFIG:=mt7981_cmcc_rax3000me-nand-ddr3
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand
+  BL2_SOC:=mt7981
+  BL2_DDRTYPE:=ddr3
+  DEPENDS:=+trusted-firmware-a-mt7981-spim-nand-ddr3
+endef
+
+define U-Boot/mt7981_cmcc_rax3000me-nand-ddr4
+  NAME:=CMCC RAX3000Me
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=cmcc_rax3000me
+  UBOOT_CONFIG:=mt7981_cmcc_rax3000me-nand-ddr4
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand
+  BL2_SOC:=mt7981
+  BL2_DDRTYPE:=ddr4
+  DEPENDS:=+trusted-firmware-a-mt7981-spim-nand-ddr4
+endef
+
 define U-Boot/mt7981_cudy_tr3000-v1
   NAME:=Cudy TR3000 v1
   BUILD_SUBTARGET:=filogic
@@ -392,6 +428,18 @@ define U-Boot/mt7981_livinet_zr-3020
   BUILD_SUBTARGET:=filogic
   BUILD_DEVICES:=livinet_zr-3020-ubootmod
   UBOOT_CONFIG:=mt7981_livinet_zr-3020
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand
+  BL2_SOC:=mt7981
+  BL2_DDRTYPE:=ddr3
+  DEPENDS:=+trusted-firmware-a-mt7981-spim-nand-ddr3
+endef
+
+define U-Boot/mt7981_netis_nx31
+  NAME:=netis NX31
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=netis_nx31
+  UBOOT_CONFIG:=mt7981_netis_nx31
   UBOOT_IMAGE:=u-boot.fip
   BL2_BOOTDEV:=spim-nand
   BL2_SOC:=mt7981
@@ -690,6 +738,18 @@ define U-Boot/mt7986_netcore_n60
   DEPENDS:=+trusted-firmware-a-mt7986-spim-nand-ddr3
 endef
 
+define U-Boot/mt7986_netcore_n60-pro
+  NAME:=Netcore N60 Pro
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=netcore_n60-pro
+  UBOOT_CONFIG:=mt7986_netcore_n60-pro
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand
+  BL2_SOC:=mt7986
+  BL2_DDRTYPE:=ddr4
+  DEPENDS:=+trusted-firmware-a-mt7986-spim-nand-ddr4
+endef
+
 define U-Boot/mt7986_tplink_tl-xdr4288
   NAME:=TP-LINK TL-XDR4288
   BUILD_SUBTARGET:=filogic
@@ -772,6 +832,18 @@ define U-Boot/mt7988_arcadyan_mozart
   BL2_SOC:=mt7988
   BL2_DDRTYPE:=comb
   DEPENDS:=+trusted-firmware-a-mt7988-emmc-comb
+endef
+
+define U-Boot/mt7988_asus_zenwifi-bt8
+  NAME:=Asus ZenWiFi BT8
+  BUILD_SUBTARGET:=filogic
+  BUILD_DEVICES:=asus_zenwifi-bt8-ubootmod
+  UBOOT_CONFIG:=mt7988a_asus_zenwifi-bt8
+  UBOOT_IMAGE:=u-boot.fip
+  BL2_BOOTDEV:=spim-nand-ubi
+  BL2_SOC:=mt7988
+  BL2_DDRTYPE:=ddr4
+  DEPENDS:=+trusted-firmware-a-mt7988-spim-nand-ubi-ddr4
 endef
 
 define U-Boot/mt7988_bananapi_bpi-r4-emmc
@@ -932,6 +1004,9 @@ UBOOT_TARGETS := \
 	mt7981_cmcc_a10 \
 	mt7981_cmcc_rax3000m-emmc \
 	mt7981_cmcc_rax3000m-nand \
+	mt7981_cmcc_rax3000me-emmc \
+	mt7981_cmcc_rax3000me-nand-ddr3 \
+	mt7981_cmcc_rax3000me-nand-ddr4 \
 	mt7981_cudy_tr3000-v1 \
 	mt7981_gatonetworks_gdsp \
 	mt7981_glinet_gl-x3000 \
@@ -943,6 +1018,7 @@ UBOOT_TARGETS := \
 	mt7981_konka_komi-a31-emmc \
 	mt7981_konka_komi-a31-nor \
 	mt7981_livinet_zr-3020 \
+	mt7981_netis_nx31 \
 	mt7981_nokia_ea0326gmp \
 	mt7981_openwrt_one-snand \
 	mt7981_openwrt_one-nor \
@@ -965,6 +1041,7 @@ UBOOT_TARGETS := \
 	mt7986_jdcloud_re-cp-03 \
 	mt7986_mercusys_mr90x-v1 \
 	mt7986_netcore_n60 \
+	mt7986_netcore_n60-pro \
 	mt7986_tplink_tl-xdr4288 \
 	mt7986_tplink_tl-xdr6086 \
 	mt7986_tplink_tl-xdr6088 \
@@ -973,6 +1050,7 @@ UBOOT_TARGETS := \
 	mt7986_zyxel_ex5601-t0 \
 	mt7986_rfb \
 	mt7988_arcadyan_mozart \
+	mt7988_asus_zenwifi-bt8 \
 	mt7988_bananapi_bpi-r4-emmc \
 	mt7988_bananapi_bpi-r4-sdmmc \
 	mt7988_bananapi_bpi-r4-snand \
@@ -988,8 +1066,7 @@ UBOOT_TARGETS := \
 UBOOT_CUSTOMIZE_CONFIG := \
 	--disable TOOLS_KWBIMAGE \
 	--disable TOOLS_LIBCRYPTO \
-	--disable TOOLS_MKEFICAPSULE \
-	--enable SERIAL_RX_BUFFER
+	--disable TOOLS_MKEFICAPSULE
 
 ifdef CONFIG_TARGET_mediatek
 UBOOT_MAKE_FLAGS += $(UBOOT_IMAGE:.fip=.bin)

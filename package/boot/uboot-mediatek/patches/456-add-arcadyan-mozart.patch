@@ -1,6 +1,6 @@
 --- /dev/null
 +++ b/configs/mt7988a_arcadyan_mozart_defconfig
-@@ -0,0 +1,113 @@
+@@ -0,0 +1,114 @@
 +CONFIG_ARM=y
 +CONFIG_SYS_HAS_NONCACHED_MEMORY=y
 +CONFIG_POSITION_INDEPENDENT=y
@@ -111,6 +111,7 @@
 +CONFIG_RAM=y
 +CONFIG_SCSI=y
 +CONFIG_DM_SERIAL=y
++CONFIG_SERIAL_RX_BUFFER=y
 +CONFIG_MTK_SERIAL=y
 +CONFIG_ZSTD=y
 +CONFIG_HEXDUMP=y
@@ -125,10 +126,10 @@
 +bootconf=config-1
 +bootconf_extra=
 +bootdelay=0
-+bootfile=openwrt-mediatek-filogic-arcadyan_mozart-initramfs.itb
-+bootfile_bl2=openwrt-mediatek-filogic-arcadyan_mozart-emmc-preloader.bin
-+bootfile_fip=openwrt-mediatek-filogic-arcadyan_mozart-emmc-bl31-uboot.fip
-+bootfile_upg=openwrt-mediatek-filogic-arcadyan_mozart-squashfs-sysupgrade.itb
++bootfile=immortalwrt-mediatek-filogic-arcadyan_mozart-initramfs.itb
++bootfile_bl2=immortalwrt-mediatek-filogic-arcadyan_mozart-emmc-preloader.bin
++bootfile_fip=immortalwrt-mediatek-filogic-arcadyan_mozart-emmc-bl31-uboot.fip
++bootfile_upg=immortalwrt-mediatek-filogic-arcadyan_mozart-squashfs-sysupgrade.itb
 +bootled_pwr=blue:status
 +bootled_rec=red:status
 +bootmenu_confirm_return=askenv - Press ENTER to return to menu ; bootmenu 60

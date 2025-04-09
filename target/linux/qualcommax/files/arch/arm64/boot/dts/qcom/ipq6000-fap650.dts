@@ -3,9 +3,9 @@
 /dts-v1/;
 
 #include "ipq6018.dtsi"
-#include "ipq6018-common.dtsi"
 #include "ipq6018-ess.dtsi"
 #include "ipq6018-nss.dtsi"
+#include "ipq6018-common.dtsi"
 #include "ipq6018-cp-cpu.dtsi"
 
 #include <dt-bindings/gpio/gpio.h>
@@ -163,6 +163,10 @@
 	};
 };
 
+&edma {
+	status = "okay";
+};
+
 &dp1 {
 	status = "okay";
 	phy-handle = <&qca8075_0>;
@@ -205,6 +209,8 @@
 
 		partitions {
 			compatible = "fixed-partitions";
+			#address-cells = <1>;
+			#size-cells = <1>;
 
 			partition@0 {
 				reg = <0x00000000 0x000c0000>;
@@ -320,13 +326,4 @@
 	status = "okay";
 	qcom,ath11k-fw-memory-mode = <1>;
 	qcom,ath11k-calibration-variant = "Yuncore-FAP650";
-};
-
-&edma {
-	status = "okay";
-};
-
-&cpu_opp_table {
-	/delete-node/ opp-1608000000;
-	/delete-node/ opp-1800000000;
 };

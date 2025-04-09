@@ -14,6 +14,8 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+#include "ipq6018-mp5496.dtsi"
+
 &soc {
 	apc_apm: apm@b111000 {
 		compatible = "qcom,ipq807x-apm";
@@ -43,7 +45,7 @@
 		qcom,cpr-up-error-step-limit = <1>;
 		qcom,apm-ctrl = <&apc_apm>;
 		qcom,apm-threshold-voltage = <850000>;
-		vdd-supply = <&ipq6018_s2>;
+		vdd-supply = <&mp5496_s2>;
 		qcom,voltage-step = <12500>;
 
 		thread@0 {
@@ -56,7 +58,7 @@
 			apc_vreg: regulator {
 				regulator-name = "apc_corner";
 				regulator-min-microvolt = <1>;
-				regulator-max-microvolt = <6>;
+				regulator-max-microvolt = <8>;
 				qcom,cpr-fuse-corners = <4>;
 				qcom,cpr-fuse-combos = <8>;
 				qcom,cpr-corners = <8>;
